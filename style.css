@@ -1,4 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
+    background: teal;
+}
+
+button {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
