@@ -67,6 +67,7 @@ function noteOn(note, velocity) {
 
   oscillators[note.toString()] = osc;
   console.log(oscillators);
+  console.log(note);
   osc.start();
 }
 
