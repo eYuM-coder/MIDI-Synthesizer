@@ -1,5 +1,5 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
-let ctx;
+let ctx = new AudioContext();
 const startButton = document.getElementsByClassName('startctx');
 const oscillators = {};
 const pianoContainer = document.getElementById('piano');
