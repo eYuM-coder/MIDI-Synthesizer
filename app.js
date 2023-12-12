@@ -31,7 +31,7 @@ function handleInput(input) {
   const command = input.data[0];
   const channel = command & 0x0f;
 
-  if (channel === 4) {
+  if (channel === 4 || channel === 14) {
     const note = input.data[1];
     const velocity = input.data[2];
 
