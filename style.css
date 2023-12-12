@@ -15,11 +15,3 @@ button {
     top: 50%;
     left: 50%;
 }
-
-piano {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  position: absolute;
-  height: 250px;
-}

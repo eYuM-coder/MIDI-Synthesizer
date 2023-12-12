@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.0.6",
-    "node-fetch": "^3.2.6",
-    "piano-keyboard": "^2.1.4"
+    "jzz-input-kbd": "^1.2.8",
+    "node-fetch": "^3.2.6"
   }
 }
