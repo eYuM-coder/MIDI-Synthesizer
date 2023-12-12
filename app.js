@@ -1,6 +1,6 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let ctx;
-const startButton = document.getElementsByClassName('startctx');
+const startButton = document.querySelector('button');
 const oscillators = {};
 
 startButton.addEventListener("click", () => {
