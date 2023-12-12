@@ -1,7 +1,9 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let ctx;
-const startButton = document.querySelector(".startctx");
+const startButton = document.getElementsByClassName('startctx');
 const oscillators = {};
+const pianoContainer = document.getElementById('piano');
+const myPiano = new PianoKeyboard(pianoContainer);
 
 startButton.addEventListener("click", () => {
   ctx = new AudioContext();
@@ -29,24 +31,20 @@ function success(midiAccess) {
 
 function handleInput(input) {
   const command = input.data[0];
-  const channel = command & 0x0f;
+  const note = input.data[1];
+  const velocity = input.data[2];
 
-  if (channel === 4 || channel === 14) {
-    const note = input.data[1];
-    const velocity = input.data[2];
-
-    switch (command) {
-      case 144:
-        if (velocity > 0) {
-          noteOn(note, velocity);
-        } else {
-          noteOff(note);
-        }
-        break;
-      case 128:
+  switch (command) {
+    case 144:
+      if (velocity > 0) {
+        noteOn(note, velocity);
+      } else {
         noteOff(note);
-        break;
-    }
+      }
+      break;
+    case 128:
+      noteOff(note);
+      break;
   }
 }
 
