@@ -30,8 +30,11 @@ function success(midiAccess) {
 
 function handleInput(input) {
     const command = input.data[0];
-    const note = input.data[1];
-    const velocity = input.data[2];
+    const channel = command & 0x0F;
+
+    if (channel === 4) {
+      const note = input.data[1];
+      const velocity = input.data[2];
     
     switch (command) {
         case 144:
@@ -44,6 +47,7 @@ function handleInput(input) {
         case 128:
             noteOff(note);
             break;
+        }
     }
 }
 
