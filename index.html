@@ -9,31 +9,8 @@
         <title>Midi Synth</title>
     </head>
     <body>
-        <div id="piano">
-          <piano-input>
-            <div></div>
-          </piano-input>
-          <piano-keyboard octaves="6" rootoctave="2" octave-count="2">
-            <style>
-              :host {
-                font-size: 4px;
-              }
-            </style>
-            <div id="container" class="octaves-2">
-              <piano-keyboard-octave emoji octave="4">
-                <div id="container">
-                  <div id="white-notes">
-                    <piano-keyboard-note color="white" activeColor="gray" note="48" emoji>
-                      <div id="container" class=" " show>
-                        <button aria-label="C" style="background-color: white;"></button>
-                      </div>
-                    </piano-keyboard-note>
-                  </div>
-                </div>
-              </piano-keyboard-octave>
-            </div>
-          </piano-keyboard>
-        </div>
+        <div id="piano"></div>
+        <script src="https://unpkg.com/piano-keyboard@1.1.0/dist/piano-keyboard.js"></script>
         <script src="piano.js"></script>
         <button>Start CTX</button>
     </body>
