@@ -1,4 +1,4 @@
-import { PianoKeyboard } from "/piano-keyboard";
+import { PianoKeyboard } from "./piano-keyboard";
 const pianoContainer = document.getElementById('piano');
 const myPiano = new PianoKeyboard(pianoContainer);
 
