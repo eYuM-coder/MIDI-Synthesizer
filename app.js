@@ -2,9 +2,6 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let ctx;
 const startButton = document.getElementsByClassName('startctx');
 const oscillators = {};
-const { PianoKeyboard } = require( 'piano-keyboard' );
-const pianoContainer = document.getElementById('piano');
-const myPiano = new PianoKeyboard(pianoContainer);
 
 startButton.addEventListener("click", () => {
   ctx = new AudioContext();
