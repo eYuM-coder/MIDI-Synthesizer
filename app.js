@@ -6,6 +6,9 @@ const oscillators = {};
 startButton.addEventListener("click", () => {
   ctx = new AudioContext();
   console.log(ctx);
+
+  Mousetrap.bind('a', () => handleInput({ data: [144, 60, 100] }));
+  Mousetrap.bind('s', () => handleInput({ data: [144, 62, 100] }));
 });
 
 function midiToFreq(number) {
