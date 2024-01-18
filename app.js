@@ -2,7 +2,6 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let ctx;
 const startButton = document.querySelector("button");
 const oscillators = {};
-const Piano = require("@tonejs/piano");
 
 startButton.addEventListener("click", () => {
   ctx = new AudioContext();
