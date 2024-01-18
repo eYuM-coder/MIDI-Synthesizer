@@ -31,7 +31,7 @@ function handleInput(input) {
   const command = input.data[0];
   const note = input.data[1];
   const velocity = input.data[2];
-  if (velocity > 0) {
+  if (velocity > 64) {
     noteOn(note, velocity);
   } else {
     noteOff(note);
