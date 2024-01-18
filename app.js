@@ -8,18 +8,6 @@ startButton.addEventListener("click", () => {
   console.log(ctx);
 });
 
-// create the piano and load 5 velocity steps
-const piano = new Piano({
-  velocities: 5,
-});
-
-//connect it to the speaker output
-piano.toDestination();
-
-piano.load().then(() => {
-  console.log("loaded!");
-});
-
 function midiToFreq(number) {
   const a = 440;
   return (a / 32) * 2 ** ((number - 9) / 12);
