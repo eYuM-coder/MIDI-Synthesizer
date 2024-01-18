@@ -1,11 +1,24 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let ctx;
-const startButton = document.querySelector('button');
+const startButton = document.querySelector("button");
 const oscillators = {};
+const Piano = require("@tonejs/piano");
 
 startButton.addEventListener("click", () => {
   ctx = new AudioContext();
   console.log(ctx);
+});
+
+// create the piano and load 5 velocity steps
+const piano = new Piano({
+  velocities: 5,
+});
+
+//connect it to the speaker output
+piano.toDestination();
+
+piano.load().then(() => {
+  console.log("loaded!");
 });
 
 function midiToFreq(number) {
@@ -31,18 +44,10 @@ function handleInput(input) {
   const command = input.data[0];
   const note = input.data[1];
   const velocity = input.data[2];
-
-  switch (command) {
-    case 144:
-      if (velocity > 0) {
-        noteOn(note, velocity);
-      } else {
-        noteOff(note);
-      }
-      break;
-    case 128:
-      noteOff(note);
-      break;
+  if (velocity > 0) {
+    noteOn(note, velocity);
+  } else {
+    noteOff(note);
   }
 }
 
