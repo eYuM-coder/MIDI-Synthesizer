@@ -45,6 +45,7 @@ function handleInput(input) {
     case 140:
     case 141:
       noteOff(note);
+      break;
   }
 }
 
