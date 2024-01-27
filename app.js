@@ -31,10 +31,20 @@ function handleInput(input) {
   const command = input.data[0];
   const note = input.data[1];
   const velocity = input.data[2];
-  if (velocity > 80) {
-    noteOn(note, velocity);
-  } else {
-    noteOff(note);
+  switch (command) {
+    case 144:
+    case 154:
+    case 155:
+    case 156:
+    case 157:
+      noteOn(note, velocity);
+      break;
+    case 128:
+    case 138:
+    case 139:
+    case 140:
+    case 141:
+      noteOff(note);
   }
 }
 
