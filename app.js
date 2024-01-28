@@ -84,9 +84,12 @@ function noteOn(note, velocity) {
   osc.start();
 
   // Add the new oscillator to the oscillators object
-  oscillators[note.toString()] = { osc, gain: oscGain, velocityGain };
+  if (oscillators[note.toString()]) {
+    console.log("Note already playing!");
+  } else {
+    oscillators[note.toString()] = { osc, gain: oscGain, velocityGain };
+  }
 }
-
 
 function noteOff(note) {
   const { osc, gain, velocityGain } = oscillators[note.toString()];
@@ -104,7 +107,6 @@ function noteOff(note) {
   delete oscillators[note.toString()];
   console.log(oscillators);
 }
-
 
 function fail() {
   console.log("Could not connect MIDI");
