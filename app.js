@@ -86,6 +86,7 @@ function noteOn(note, velocity) {
   // Add the new oscillator to the oscillators object
   if (oscillators[note.toString()]) {
     console.log("Note already playing!");
+    return;
   } else {
     oscillators[note.toString()] = { osc, gain: oscGain, velocityGain };
   }
