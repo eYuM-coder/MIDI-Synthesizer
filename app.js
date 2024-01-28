@@ -33,16 +33,32 @@ function handleInput(input) {
   const velocity = input.data[2];
   switch (command) {
     case 144:
+      noteOn(note, velocity);
+      break;
     case 154:
+      noteOn(note, velocity);
+      break;
     case 155:
+      noteOn(note, velocity);
+      break;
     case 156:
+      noteOn(note, velocity);
+      break;
     case 157:
       noteOn(note, velocity);
       break;
     case 128:
+      noteOff(note);
+      break;
     case 138:
+      noteOff(note);
+      break;
     case 139:
+      noteOff(note);
+      break;
     case 140:
+      noteOff(note);
+      break;
     case 141:
       noteOff(note);
       break;
