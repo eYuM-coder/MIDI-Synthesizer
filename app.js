@@ -106,12 +106,6 @@ function noteOff(note) {
     return;
   }
 
-  // Check if the gain nodes exist
-  if (!osc || !gain || !velocityGain) {
-    console.log(`Incomplete oscillator information for note ${note}`);
-    return;
-  }
-
   oscGain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
   oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1);
 
