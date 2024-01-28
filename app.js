@@ -33,6 +33,15 @@ function handleInput(input) {
   const velocity = input.data[2];
   switch (command) {
     case 144:
+    case 145:
+    case 146:
+    case 147:
+    case 148:
+    case 149:
+    case 150:
+    case 151:
+    case 152:
+    case 153:
     case 154:
     case 155:
     case 156:
@@ -40,6 +49,15 @@ function handleInput(input) {
       noteOn(note, velocity);
       break;
     case 128:
+    case 129:
+    case 130:
+    case 131:
+    case 132:
+    case 133:
+    case 134:
+    case 135:
+    case 136:
+    case 137:
     case 138:
     case 139:
     case 140:
