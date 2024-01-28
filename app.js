@@ -46,6 +46,8 @@ function handleInput(input) {
     case 155:
     case 156:
     case 157:
+    case 158:
+    case 159:
       noteOn(note, velocity);
       break;
     case 128:
@@ -62,6 +64,8 @@ function handleInput(input) {
     case 139:
     case 140:
     case 141:
+    case 142:
+    case 143:
       noteOff(note);
       break;
   }
