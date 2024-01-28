@@ -106,7 +106,7 @@ function noteOff(note) {
     return;
   }
 
-  oscGain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
+  oscGain.gain.setValueAtTime(oscGain.gain.value, ctx.currentTime);
   oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1);
 
   setTimeout(() => {
