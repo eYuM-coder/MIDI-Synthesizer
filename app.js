@@ -92,7 +92,21 @@ function noteOn(note, velocity) {
 }
 
 function noteOff(note) {
-  const { osc, gain, velocityGain } = oscillators[note.toString()];
+  const oscillator = oscillators[note.toString()];
+
+  // Check if the oscillator exists
+  if (!oscillator) {
+    console.log(`No oscillator found for note ${note}`);
+    return;
+  }
+
+  const { osc, gain, velocityGain } = oscillator;
+
+  // Check if the gain nodes exist
+  if (!osc || !gain || !velocityGain) {
+    console.log(`Incomplete oscillator information for note ${note}`);
+    return;
+  }
 
   gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.0001);
@@ -107,6 +121,7 @@ function noteOff(note) {
   delete oscillators[note.toString()];
   console.log(oscillators);
 }
+
 
 function fail() {
   console.log("Could not connect MIDI");
