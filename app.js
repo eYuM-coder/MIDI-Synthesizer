@@ -93,26 +93,34 @@ function noteOn(note, velocity) {
   osc.start();
 
   // Add the new oscillator to the oscillators object
-  oscillators[note.toString()] = osc;
+  oscillators[note.toString()] = { osc, gain: oscGain, velocityGain };
+  console.log(oscillators);
 }
 
 function noteOff(note) {
-  const osc = oscillators[note.toString()];
-  const oscGain = osc.gain;
+  const oscillator = oscillators[note.toString()];
 
   // Check if the oscillator exists
-  if (!osc) {
+  if (!oscillator) {
     console.log(`No oscillator found for note ${note}`);
     return;
   }
 
-  oscGain.gain.setValueAtTime(oscGain.gain.value, ctx.currentTime);
-  oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1);
+  const { osc, gain, velocityGain } = oscillator;
+
+  // Check if the gain nodes exist
+  if (!osc || !gain || !velocityGain) {
+    console.log(`Incomplete oscillator information for note ${note}`);
+    return;
+  }
+
+  gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1);
 
   setTimeout(() => {
     // Disconnect the gain nodes when the fade-out is complete
-    osc.stop();
-    osc.disconnect();
+    gain.disconnect();
+    velocityGain.disconnect();
   }, 2000);
 
   // Don't stop the oscillator immediately
