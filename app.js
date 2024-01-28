@@ -66,6 +66,10 @@ function handleInput(input) {
 }
 
 function noteOn(note, velocity) {
+  if (oscillators[note.toString()]) {
+    console.log("Note already playing!");
+    return;
+  }
   const osc = ctx.createOscillator();
   const oscGain = ctx.createGain();
   oscGain.gain.value = 0.33;
@@ -84,12 +88,7 @@ function noteOn(note, velocity) {
   osc.start();
 
   // Add the new oscillator to the oscillators object
-  if (oscillators[note.toString()]) {
-    console.log("Note already playing!");
-    return;
-  } else {
-    oscillators[note.toString()] = { osc, gain: oscGain, velocityGain };
-  }
+  oscillators[note.toString()] = { osc, gain: oscGain, velocityGain };
 }
 
 function noteOff(note) {
