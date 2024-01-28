@@ -85,6 +85,11 @@ function noteOn(note, velocity) {
   oscGain.connect(velocityGain);
   velocityGain.connect(ctx.destination);
 
+  osc.gain = oscGain;
+
+  oscGain.gain.setValueAtTime(oscGain.gain.value, ctx.currentTime);
+  oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 10);
+
   osc.start();
 
   // Add the new oscillator to the oscillators object
@@ -109,7 +114,7 @@ function noteOff(note) {
   }
 
   gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.0001);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1);
 
   setTimeout(() => {
     // Disconnect the gain nodes when the fade-out is complete
