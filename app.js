@@ -51,7 +51,6 @@ function handleInput(input) {
 
 function noteOn(note, velocity) {
   const osc = ctx.createOscillator();
-
   const oscGain = ctx.createGain();
   oscGain.gain.value = 0.33;
 
@@ -66,28 +65,30 @@ function noteOn(note, velocity) {
   oscGain.connect(velocityGain);
   velocityGain.connect(ctx.destination);
 
-  osc.gain = oscGain;
-
-  oscillators[note.toString()] = osc;
-  console.log(oscillators);
-  console.log(note);
   osc.start();
+
+  // Add the new oscillator to the oscillators object
+  oscillators[note.toString()] = { osc, gain: oscGain, velocityGain };
 }
 
-function noteOff(note) {
-  const osc = oscillators[note.toString()];
-  const oscGain = osc.gain;
 
-  oscGain.gain.setValueAtTime(oscGain.gain.value, ctx.currentTime);
-  oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.0001);
+function noteOff(note) {
+  const { osc, gain, velocityGain } = oscillators[note.toString()];
+
+  gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.0001);
 
   setTimeout(() => {
-    osc.stop();
-    osc.disconnect();
+    // Disconnect the gain nodes when the fade-out is complete
+    gain.disconnect();
+    velocityGain.disconnect();
   }, 2000);
+
+  // Don't stop the oscillator immediately
   delete oscillators[note.toString()];
   console.log(oscillators);
 }
+
 
 function fail() {
   console.log("Could not connect MIDI");
