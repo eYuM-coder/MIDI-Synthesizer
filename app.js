@@ -13,6 +13,12 @@ function midiToFreq(number) {
   return (a / 32) * 2 ** ((number - 9) / 12);
 }
 
+function midiToCutOff(number) {
+  const a = 440;
+  console.log((a / 440) * 2 ** ((number - 9) / 12));
+  return (a / 440) * 2 ** ((number - 9) / 12);
+}
+
 if (navigator.requestMIDIAccess) {
   navigator.requestMIDIAccess().then(success, fail);
 }
@@ -86,6 +92,7 @@ function noteOn(note, velocity) {
 
   osc.type = "sawtooth";
   osc.frequency.value = midiToFreq(note);
+  console.log(midiToCutOff(note));
 
   osc.connect(oscGain);
   oscGain.connect(velocityGain);
@@ -133,7 +140,6 @@ function noteOff(note) {
   delete oscillators[note.toString()];
   console.log(oscillators);
 }
-
 
 function fail() {
   console.log("Could not connect MIDI");
