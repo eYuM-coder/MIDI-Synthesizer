@@ -15,7 +15,7 @@ function midiToFreq(number) {
 
 function midiToCutOff(number) {
   const a = 440;
-  return ((a / ((number - 9) * 2)) / 10);
+  return a / ((number - 9) * 2);
 }
 
 if (navigator.requestMIDIAccess) {
