@@ -100,7 +100,7 @@ function noteOn(note, velocity) {
   osc.gain = oscGain;
 
   oscGain.gain.setValueAtTime(oscGain.gain.value, ctx.currentTime);
-  oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 10);
+  oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + cutOffTime);
 
   osc.start();
 
@@ -127,7 +127,7 @@ function noteOff(note) {
   }
 
   gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + cutOffTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1);
 
   setTimeout(() => {
     // Disconnect the gain nodes when the fade-out is complete
