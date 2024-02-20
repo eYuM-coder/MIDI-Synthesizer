@@ -15,7 +15,6 @@ function midiToFreq(number) {
 
 function midiToCutOff(number) {
   const a = 440;
-  console.log((a / ((number - 9) * 2)) / 10);
   return ((a / ((number - 9) * 2)) / 10);
 }
 
@@ -92,7 +91,7 @@ function noteOn(note, velocity) {
 
   osc.type = "sawtooth";
   osc.frequency.value = midiToFreq(note);
-  console.log(midiToCutOff(note));
+  let cutOffTime = midiToCutOff(note);
 
   osc.connect(oscGain);
   oscGain.connect(velocityGain);
@@ -128,7 +127,7 @@ function noteOff(note) {
   }
 
   gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + cutOffTime);
 
   setTimeout(() => {
     // Disconnect the gain nodes when the fade-out is complete
